@@ -10,10 +10,10 @@ Route::get('/', function () {
 
 Route::get('/profile', function () {
     $data = [
-        "name" => "Muftia Ayu",
-        "address" => "Salatiga",
-        "email" => "muftiaayu@example.com",
-        "univ"=> "UINSAGA"
+        "name" => "Muftia Ayu Khoirunnisa",
+        "address" => "Dsn Karangnongko, ds.Gedangan, kec.Tuntang, kab.Semarang",
+        "email" => "muftiaayu@gmail.com",
+        "univ"=> "UIN Salatiga"
     ];
     return view('profile', compact('data'));
 });
