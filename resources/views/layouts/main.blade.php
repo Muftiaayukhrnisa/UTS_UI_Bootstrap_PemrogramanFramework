@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Google Fonts (mewah) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -20,18 +20,18 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #fef5f7 0%, #eef2ff 100%);
+            background: linear-gradient(145deg, #0f0f1a 0%, #1a1a2e 50%, #0d0d18 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* Navbar mewah dengan efek glass + gradien biru-pink */
+        /* Navbar gelap mewah dengan efek glass - nuansa rosegold */
         .navbar-luxury {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(15, 15, 26, 0.85);
             backdrop-filter: blur(16px);
-            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.08);
-            border-bottom: 1px solid rgba(219, 39, 119, 0.15);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(212, 160, 168, 0.3);
             padding: 0.8rem 0;
         }
 
@@ -39,7 +39,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.7rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #db2777, #2563eb);
+            background: linear-gradient(135deg, #e0a0b0, #d4a0a8, #b0b0c0);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
@@ -48,7 +48,7 @@
 
         .navbar-nav .nav-link {
             font-weight: 500;
-            color: #334155;
+            color: #c0c0d0;
             transition: all 0.2s ease;
             padding: 0.5rem 1rem;
             border-radius: 40px;
@@ -56,16 +56,23 @@
         }
 
         .navbar-nav .nav-link:hover {
-            background: linear-gradient(105deg, #ffe4ec, #e0e7ff);
-            color: #db2777;
+            background: rgba(212, 160, 168, 0.15);
+            color: #d4a0a8;
             transform: translateY(-1px);
         }
 
-        /* Tombol aktif / home bisa ditambahkan class active jika diperlukan */
         .navbar-nav .nav-link.active {
-            background: linear-gradient(105deg, #db2777, #2563eb);
-            color: white;
-            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.25);
+            background: linear-gradient(105deg, #b76e79, #d4a0a8);
+            color: #12121c;
+            box-shadow: 0 4px 12px rgba(192, 110, 123, 0.3);
+        }
+
+        /* Toggler button untuk mobile (warna rosegold) */
+        .navbar-toggler {
+            border-color: rgba(212, 160, 168, 0.5);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4a0a8' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         /* Main content */
@@ -74,11 +81,11 @@
             padding: 2rem 0;
         }
 
-        /* Footer mewah */
+        /* Footer gelap elegan */
         .footer-luxury {
-            background: linear-gradient(95deg, #1e1e2f 0%, #16213e 100%);
-            color: #e2e8f0;
-            border-top: 1px solid rgba(219, 39, 119, 0.3);
+            background: linear-gradient(95deg, #0a0a14 0%, #12121e 100%);
+            color: #8a8aaa;
+            border-top: 1px solid rgba(212, 160, 168, 0.2);
             padding: 2rem 0;
             margin-top: auto;
         }
@@ -86,63 +93,66 @@
         .footer-luxury small {
             font-weight: 300;
             letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
         }
 
         .footer-luxury a {
-            color: #f472b6;
+            color: #d4a0a8;
             text-decoration: none;
             transition: 0.2s;
         }
 
         .footer-luxury a:hover {
-            color: #60a5fa;
+            color: #e0b0b8;
             text-decoration: underline;
         }
 
-        /* Efek custom scrollbar */
+        /* Custom scrollbar dengan rosegold */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #1a1a2e;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #db2777, #2563eb);
+            background: linear-gradient(180deg, #b76e79, #d4a0a8);
             border-radius: 10px;
         }
 
-        /* Card style untuk konten (optional, biar rapi jika ada card di yield) */
+        /* Card style umum (jika diperlukan di yield) */
         .card-modern {
-            background: rgba(255,255,255,0.75);
+            background: rgba(20, 20, 35, 0.6);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(219,39,119,0.2);
+            border: 1px solid rgba(212, 160, 168, 0.25);
             border-radius: 24px;
             transition: all 0.25s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .card-modern:hover {
             transform: translateY(-5px);
-            border-color: rgba(37,99,235,0.3);
-            box-shadow: 0 20px 30px -12px rgba(219,39,119,0.15);
-            background: rgba(255,255,255,0.9);
+            border-color: rgba(212, 160, 168, 0.5);
+            box-shadow: 0 20px 30px -12px rgba(192, 110, 123, 0.2);
+            background: rgba(20, 20, 35, 0.8);
         }
 
-        /* Tombol umum */
-        .btn-pink-blue {
-            background: linear-gradient(105deg, #db2777, #2563eb);
+        /* Tombol umum (jika digunakan) */
+        .btn-rosegold {
+            background: linear-gradient(105deg, #b76e79, #d4a0a8, #8c8cac);
+            background-size: 150% auto;
             border: none;
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
             font-weight: 600;
-            color: white;
+            color: #12121c;
             transition: 0.2s;
-            box-shadow: 0 6px 14px rgba(37,99,235,0.25);
+            box-shadow: 0 6px 14px rgba(192, 110, 123, 0.25);
         }
-        .btn-pink-blue:hover {
+        .btn-rosegold:hover {
+            background-position: right center;
             transform: translateY(-2px);
-            box-shadow: 0 12px 20px rgba(219,39,119,0.3);
-            color: white;
+            box-shadow: 0 12px 20px rgba(192, 110, 123, 0.4);
+            color: #0a0a14;
         }
 
         @media (max-width: 768px) {
@@ -187,9 +197,9 @@
     <div class="container text-center">
         <small>
             &copy; 2026 MutiBlog. Built with 
-            <a href="#" class="text-decoration-none">Laravel ❤️</a> 
+            <a href="#" class="text-decoration-none">Laravel</a> 
             <span class="mx-1">•</span> 
-            <span style="color: #f472b6;"></span>
+            <span style="color: #d4a0a8;">Rosegold Elegance</span>
         </small>
     </div>
 </footer>

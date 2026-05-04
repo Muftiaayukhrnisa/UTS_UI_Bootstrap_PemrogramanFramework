@@ -2,129 +2,192 @@
 
 @section('content')
 <style>
-    /* Gaya spesifik untuk halaman profil tanpa foto & sosmed */
-    .profile-header {
-        background: linear-gradient(135deg, rgba(219,39,119,0.08), rgba(37,99,235,0.08));
-        border-radius: 2rem;
-        padding: 2rem;
-        margin-bottom: 2rem;
+    /* Gaya gelap elegan - Rosegold & Abu-abu (konsisten dengan halaman lain) */
+    .profile-wrapper {
+        background: linear-gradient(145deg, #0f0f1a 0%, #1a1a2e 50%, #0d0d18 100%);
+        min-height: 85vh;
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
     }
 
+    .profile-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(192, 110, 123, 0.12), transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .profile-wrapper::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.08), transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        background: rgba(20, 20, 35, 0.4);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(212, 160, 168, 0.2);
+    }
+
+    .profile-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #e0a0b0, #d4a0a8, #b0b0c0);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-header p {
+        font-family: 'Poppins', sans-serif;
+        color: #b0b0c0;
+        font-size: 0.9rem;
+    }
+
+    .profile-header .divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #b76e79, #d4a0a8);
+        margin: 0.8rem auto 0;
+        border-radius: 2px;
+    }
+
+    /* Kartu profil */
     .profile-card {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(20, 20, 35, 0.6);
         backdrop-filter: blur(12px);
-        border-radius: 2rem;
-        border: 1px solid rgba(219, 39, 119, 0.2);
+        border-radius: 1.8rem;
+        border: 1px solid rgba(212, 160, 168, 0.3);
         transition: all 0.3s ease;
         overflow: hidden;
-        max-width: 700px;
-        margin: 0 auto;
     }
 
     .profile-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 35px -12px rgba(219, 39, 119, 0.2);
-        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 20px 35px -12px rgba(192, 110, 123, 0.2);
+        border-color: rgba(212, 160, 168, 0.6);
     }
 
-    .info-row {
+    /* Informasi tanpa ikon */
+    .info-item {
         display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        align-items: baseline;
         flex-wrap: wrap;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(212, 160, 168, 0.2);
     }
 
-    .info-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, rgba(219,39,119,0.15), rgba(37,99,235,0.15));
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-    }
-
-    .info-content {
-        flex: 1;
+    .info-item:last-child {
+        border-bottom: none;
     }
 
     .info-label {
+        width: 140px;
+        font-family: 'Poppins', sans-serif;
         font-weight: 600;
-        color: #db2777;
+        color: #d4a0a8;
         font-size: 0.8rem;
         letter-spacing: 0.5px;
-        margin-bottom: 0.2rem;
+        text-transform: uppercase;
     }
 
     .info-value {
-        font-size: 1.1rem;
+        flex: 1;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
         font-weight: 500;
-        color: #1e293b;
-        border-bottom: 1px dashed rgba(37,99,235,0.2);
-        padding-bottom: 0.5rem;
+        color: #c0c0d0;
+        padding-left: 1rem;
+    }
+
+    /* Kutipan */
+    .profile-quote {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: #8a8aaa;
+        font-size: 0.85rem;
+        border-top: 1px solid rgba(212, 160, 168, 0.2);
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     @media (max-width: 640px) {
-        .profile-card {
-            margin: 0 1rem;
+        .profile-header h1 {
+            font-size: 1.8rem;
+        }
+        .info-item {
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .info-label {
+            width: auto;
         }
         .info-value {
-            font-size: 1rem;
+            padding-left: 0;
         }
     }
 </style>
 
-<section class="container py-5">
-    <div class="profile-header text-center">
-        <h1 class="display-5 fw-bold" style="background: linear-gradient(115deg, #db2777, #2563eb); background-clip: text; -webkit-background-clip: text; color: transparent;">
-            Profil Penulis
-        </h1>
-        <p class="text-secondary">Mengenal lebih dekat kreator di balik MutiBlog</p>
-        <div style="width: 60px; height: 3px; background: linear-gradient(90deg, #db2777, #2563eb); margin: 0.5rem auto; border-radius: 2px;"></div>
-    </div>
+<div class="profile-wrapper">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>Profil Penulis</h1>
+            <p>Mengenal lebih dekat kreator di balik MutiBlog</p>
+            <div class="divider"></div>
+        </div>
 
-    <div class="profile-card p-4 p-md-5">
-        <div class="info-row">
-            <div class="info-icon">👤</div>
-            <div class="info-content">
-                <div class="info-label">NAMA LENGKAP</div>
+        <div class="profile-card p-4 p-md-5">
+            <div class="info-item">
+                <div class="info-label">Nama Lengkap</div>
                 <div class="info-value">{{ $data['name'] }}</div>
             </div>
-        </div>
-
-        <div class="info-row">
-            <div class="info-icon">✉️</div>
-            <div class="info-content">
-                <div class="info-label">EMAIL</div>
+            <div class="info-item">
+                <div class="info-label">Email</div>
                 <div class="info-value">{{ $data['email'] }}</div>
             </div>
-        </div>
-
-        <div class="info-row">
-            <div class="info-icon">🏠</div>
-            <div class="info-content">
-                <div class="info-label">ALAMAT</div>
+            <div class="info-item">
+                <div class="info-label">Alamat</div>
                 <div class="info-value">{{ $data['address'] }}</div>
             </div>
-        </div>
-
-        <div class="info-row">
-            <div class="info-icon">🎓</div>
-            <div class="info-content">
-                <div class="info-label">UNIVERSITAS</div>
+            <div class="info-item">
+                <div class="info-label">Universitas</div>
                 <div class="info-value">{{ $data['univ'] }}</div>
             </div>
         </div>
-    </div>
 
-    <!-- Tambahan kutipan penulis -->
-    <div class="text-center mt-5">
-        <p class="fst-italic text-secondary" style="font-size: 0.9rem;">
+        <div class="profile-quote">
             "Membagikan ilmu melalui tulisan adalah bentuk investasi terbaik untuk masa depan"
-        </p>
+        </div>
     </div>
-</section>
+</div>
 @endsection

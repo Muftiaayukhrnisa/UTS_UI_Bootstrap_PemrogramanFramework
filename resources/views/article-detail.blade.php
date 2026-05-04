@@ -2,39 +2,123 @@
 
 @section('content')
 <style>
-    /* Gaya spesifik untuk halaman detail artikel */
-    .detail-header {
-        background: linear-gradient(135deg, rgba(219,39,119,0.08), rgba(37,99,235,0.08));
-        border-radius: 2rem;
-        padding: 1rem 2rem;
-        margin-bottom: 2rem;
+    /* Gaya gelap elegan - Rosegold & Abu-abu (konsisten dengan halaman lain) */
+    .detail-wrapper {
+        background: linear-gradient(145deg, #0f0f1a 0%, #1a1a2e 50%, #0d0d18 100%);
+        min-height: 85vh;
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
     }
 
+    .detail-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(192, 110, 123, 0.12), transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .detail-wrapper::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.08), transparent 70%);
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .detail-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Header dengan tombol back */
+    .detail-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        background: rgba(20, 20, 35, 0.4);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid rgba(212, 160, 168, 0.2);
+    }
+
+    .btn-back {
+        background: rgba(30, 30, 50, 0.7);
+        border: 1px solid rgba(212, 160, 168, 0.4);
+        padding: 0.5rem 1.2rem;
+        border-radius: 40px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #d4a0a8;
+        transition: 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-back:hover {
+        background: rgba(212, 160, 168, 0.15);
+        border-color: #d4a0a8;
+        color: #e0b0b8;
+        transform: translateX(-3px);
+    }
+
+    .badge-detail {
+        background: linear-gradient(105deg, #b76e79, #d4a0a8);
+        padding: 0.4rem 1.2rem;
+        border-radius: 40px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        color: #12121c;
+    }
+
+    /* Kartu artikel */
     .article-card {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(20, 20, 35, 0.6);
         backdrop-filter: blur(12px);
         border-radius: 2rem;
-        border: 1px solid rgba(219, 39, 119, 0.2);
+        border: 1px solid rgba(212, 160, 168, 0.3);
         overflow: hidden;
         transition: all 0.3s ease;
     }
 
     .article-card:hover {
-        box-shadow: 0 20px 35px -12px rgba(219, 39, 119, 0.2);
-        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 20px 35px -12px rgba(192, 110, 123, 0.2);
+        border-color: rgba(212, 160, 168, 0.6);
     }
 
     .article-img {
         width: 100%;
         max-height: 450px;
         object-fit: cover;
-        border-bottom: 1px solid rgba(219,39,119,0.2);
+        border-bottom: 1px solid rgba(212, 160, 168, 0.3);
     }
 
     .article-title {
+        font-family: 'Playfair Display', serif;
         font-size: 2.2rem;
         font-weight: 800;
-        background: linear-gradient(115deg, #1e1e2f, #db2777, #2563eb);
+        background: linear-gradient(135deg, #e0a0b0, #d4a0a8, #b0b0c0);
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
@@ -44,50 +128,55 @@
     .meta-info {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.5rem;
+        gap: 1.2rem;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 1px dashed rgba(37,99,235,0.2);
+        border-bottom: 1px dashed rgba(212, 160, 168, 0.3);
     }
 
     .meta-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(219,39,119,0.08);
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8rem;
+        color: #b0b0c0;
+        background: rgba(212, 160, 168, 0.1);
         padding: 0.3rem 1rem;
         border-radius: 40px;
-        font-size: 0.85rem;
-        color: #db2777;
         font-weight: 500;
     }
 
     .article-content {
+        font-family: 'Inter', sans-serif;
         line-height: 1.8;
-        color: #1e293b;
-        font-size: 1.05rem;
+        color: #c0c0d0;
+        font-size: 1rem;
         text-align: justify;
     }
 
-    .btn-back {
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(219,39,119,0.3);
-        padding: 0.6rem 1.5rem;
-        border-radius: 40px;
-        font-weight: 500;
-        color: #db2777;
-        transition: 0.2s;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+    .article-content p {
+        margin-bottom: 1rem;
     }
 
-    .btn-back:hover {
-        background: rgba(219,39,119,0.1);
-        border-color: #db2777;
-        color: #c24573;
-        transform: translateX(-3px);
+    /* Footer artikel */
+    .article-footer {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        text-align: center;
+        border-top: 1px solid rgba(212, 160, 168, 0.2);
+    }
+
+    .footer-divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #b76e79, #d4a0a8);
+        margin: 0 auto 1rem auto;
+        border-radius: 2px;
+    }
+
+    .footer-quote {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: #8a8aaa;
+        font-size: 0.85rem;
     }
 
     @media (max-width: 768px) {
@@ -97,48 +186,58 @@
         .meta-info {
             gap: 0.8rem;
         }
+        .meta-item {
+            font-size: 0.7rem;
+        }
         .article-content {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+        }
+        .detail-header {
+            flex-direction: column;
+            text-align: center;
         }
     }
 </style>
 
-<section class="container py-5">
-    <!-- Header dengan tombol back -->
-    <div class="detail-header d-flex justify-content-between align-items-center flex-wrap gap-3">
-        <a href="/articles" class="btn-back">
-            ← Kembali ke Artikel
-        </a>
-        <div class="badge" style="background: linear-gradient(105deg, #db2777, #2563eb); color: white; padding: 0.5rem 1rem; border-radius: 40px;">
-            Detail Artikel
-        </div>
-    </div>
-
-    <!-- Kartu Artikel -->
-    <div class="article-card">
-        @if($artikel->gambar_url)
-            <img src="{{ $artikel->gambar_url }}" class="article-img" alt="{{ $artikel->judul }}">
-        @endif
-
-        <div class="p-4 p-md-5">
-            <h1 class="article-title">{{ $artikel->judul }}</h1>
-
-            <div class="meta-info">
-                <span class="meta-item">🏷️ {{ $artikel->kategori }}</span>
-                <span class="meta-item">👁️ {{ number_format($artikel->views) }} x dilihat</span>
-                <span class="meta-item">📅 {{ $artikel->created_at->format('d M Y') }}</span>
-            </div>
-
-            <div class="article-content">
-                {!! nl2br(e($artikel->isi)) !!}
-            </div>
-
-            <!-- Opsi tambahan: tombol share atau navigasi (bisa ditambahkan jika perlu) -->
-            <div class="mt-5 pt-3 text-center">
-                <div style="width: 60px; height: 2px; background: linear-gradient(90deg, #db2777, #2563eb); margin: 0 auto 1.5rem auto;"></div>
-                <p class="text-secondary fst-italic">Terima kasih telah membaca artikel ini 😊</p>
+<div class="detail-wrapper">
+    <div class="detail-container">
+        <!-- Header -->
+        <div class="detail-header">
+            <a href="/articles" class="btn-back">
+                Kembali ke Artikel
+            </a>
+            <div class="badge-detail">
+                DETAIL ARTIKEL
             </div>
         </div>
+
+        <!-- Kartu Artikel -->
+        <div class="article-card">
+            @if($artikel->gambar_url)
+                <img src="{{ $artikel->gambar_url }}" class="article-img" alt="{{ $artikel->judul }}">
+            @endif
+
+            <div class="p-4 p-md-5">
+                <h1 class="article-title">{{ $artikel->judul }}</h1>
+
+                <div class="meta-info">
+                    <span class="meta-item">Kategori : {{ $artikel->kategori }}</span>
+                    <span class="meta-item">{{ number_format($artikel->views) }} x dilihat</span>
+                    <span class="meta-item">{{ $artikel->created_at->format('d M Y') }}</span>
+                </div>
+
+                <div class="article-content">
+                    {!! nl2br(e($artikel->isi)) !!}
+                </div>
+
+                <div class="article-footer">
+                    <div class="footer-divider"></div>
+                    <div class="footer-quote">
+                        Terima kasih telah membaca artikel ini
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 @endsection
