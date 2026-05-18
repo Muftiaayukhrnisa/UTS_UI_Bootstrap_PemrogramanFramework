@@ -49,7 +49,7 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul' => 'required|min:5|max:200',
-            'isi' => 'required',
+            'isi' => 'required|min:20|max:500',
             'kategori' => 'required',
             'status' => 'required|in:draft,publish',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
@@ -85,8 +85,8 @@ class ArtikelController extends Controller
         $artikel = Artikel::findOrFail($id);
 
         $request->validate([
-            'judul' => 'required|min:5|max:200',
-            'isi' => 'required',
+            'judul' => 'required|min:15|max:200',
+            'isi' => 'required|min:20|max:1000',
             'kategori' => 'required',
             'status' => 'required|in:draft,publish',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:10240',

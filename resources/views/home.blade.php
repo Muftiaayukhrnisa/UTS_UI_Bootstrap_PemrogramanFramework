@@ -14,6 +14,23 @@
         overflow: hidden;
     }
 
+    /* Gambar menyatu dengan background - posisi absolut di kanan, dengan mask gradasi */
+    .hero-bg-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 55%;
+        background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        background-position: center;
+        /* Mask gradasi dari kiri (transparan) ke kanan (solid) sehingga gambar menyatu dengan background */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 25%, #000 100%);
+        mask-image: linear-gradient(to right, transparent 0%, #000 25%, #000 100%);
+        z-index: 1;
+    }
+
+    /* Efek ornamen latar (tetap di belakang) */
     .hero-dark-rose::before {
         content: "";
         position: absolute;
@@ -39,9 +56,9 @@
     }
 
     .container-2col {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 3rem 2rem;
+        padding: 2rem;
         position: relative;
         z-index: 2;
         width: 100%;
@@ -50,44 +67,48 @@
     .two-col-layout {
         display: flex;
         flex-wrap: wrap;
-        gap: 3rem;
-        align-items: center;
+        gap: 0;
+        align-items: stretch;
     }
 
+    /* KOLOM KIRI: Teks tanpa bingkai kotak (tanpa background, blur, border, shadow) */
     .left-col {
-        flex: 1.2;
+        flex: 1;
         min-width: 280px;
-        text-align: left;
+        padding: 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Tidak ada background, backdrop-filter, border, atau box-shadow */
+        z-index: 2;
     }
 
+    /* KOLOM KANAN: Kosong, hanya sebagai penyeimbang layout */
     .right-col {
-        flex: 0.8;
-        min-width: 260px;
-        background: rgba(20, 20, 35, 0.5);
-        backdrop-filter: blur(8px);
-        border-radius: 28px;
-        padding: 1.8rem;
-        border: 1px solid rgba(212, 160, 168, 0.3);
-        box-shadow: 0 15px 30px -10px rgba(0,0,0,0.3);
+        flex: 1;
+        min-width: 280px;
+        position: relative;
+        z-index: 2;
     }
 
+    /* Gaya teks kiri (elegan, kontras dengan background gelap) */
     .badge-rose-dark {
         display: inline-block;
-        background: rgba(212, 160, 168, 0.15);
-        padding: 0.4rem 1.2rem;
-        border-radius: 50px;
-        border: 1px solid rgba(212, 160, 168, 0.4);
+        background: transparent; /* hilangkan background */
+        padding: 0.4rem 0; /* hilangkan padding horizontal agar tidak seperti kotak */
+        border: none;
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
         font-size: 0.7rem;
         letter-spacing: 1.5px;
         color: #d4a0a8;
         margin-bottom: 1.8rem;
+        width: fit-content;
     }
 
     .title-dark-rose {
         font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
+        font-size: 3.2rem;
         font-weight: 800;
         background: linear-gradient(135deg, #e0a0b0, #d4a0a8, #b0b0c0);
         background-clip: text;
@@ -102,14 +123,15 @@
         font-family: 'Poppins', sans-serif;
         font-size: 1rem;
         line-height: 1.6;
-        color: #c0c0d0;
+        color: #e8e8f0;
         margin: 1.2rem 0 2rem;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .divider-dark {
         width: 60px;
         height: 2px;
-        background: linear-gradient(90deg, #d4a0a8, #6c6c8c);
+        background: linear-gradient(90deg, #d4a0a8, #a0a0c0);
         margin: 1rem 0 1.5rem;
         border-radius: 2px;
     }
@@ -129,14 +151,15 @@
         color: #12121c;
         text-decoration: none;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 18px -6px rgba(192,110,123,0.3);
+        box-shadow: 0 8px 18px -6px rgba(192,110,123,0.4);
         letter-spacing: 0.3px;
+        width: fit-content;
     }
 
     .btn-rose-dark:hover {
         background-position: right center;
         transform: translateY(-3px);
-        box-shadow: 0 15px 25px -8px rgba(192,110,123,0.5);
+        box-shadow: 0 15px 25px -8px rgba(192,110,123,0.6);
         color: #0a0a14;
     }
 
@@ -148,53 +171,38 @@
         transform: translateX(5px);
     }
 
-    /* Gaya baru untuk kolom kanan: poin-poin rapi */
-    .right-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #e0a0b0;
-        margin-bottom: 1.5rem;
-        border-left: 3px solid #d4a0a8;
-        padding-left: 0.8rem;
-    }
-
-    .benefit-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .benefit-item {
-        font-family: 'Poppins', sans-serif;
-        font-size: 0.85rem;
-        color: #c0c0d0;
-        line-height: 1.4;
-        padding: 0.4rem 0;
-        border-bottom: 1px dashed rgba(212,160,168,0.2);
-    }
-
-    .benefit-item:last-child {
-        border-bottom: none;
-    }
-
+    /* Responsif */
     @media (max-width: 768px) {
+        .hero-bg-image {
+            width: 100%;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
+        }
         .two-col-layout {
             flex-direction: column;
         }
-        .title-dark-rose {
-            font-size: 2.3rem;
+        .left-col {
+            padding: 2rem 1.5rem;
         }
         .right-col {
-            width: 100%;
+            display: none;
+        }
+        .title-dark-rose {
+            font-size: 2.2rem;
+        }
+        .container-2col {
+            padding: 1rem;
         }
     }
 </style>
 
 <div class="hero-dark-rose">
+    <!-- Gambar menyatu dengan background via mask gradasi -->
+    <div class="hero-bg-image"></div>
+
     <div class="container-2col">
         <div class="two-col-layout">
-            <!-- Kolom Kiri -->
+            <!-- KOLOM KIRI: Teks tanpa bingkai kotak (background/border sudah dihapus) -->
             <div class="left-col">
                 <div class="badge-rose-dark">RUANG IDE DIGITAL</div>
                 <h1 class="title-dark-rose">
@@ -213,15 +221,8 @@
                 </a>
             </div>
 
-            <!-- Kolom Kanan: diganti dengan poin-poin rapi -->
-            <div class="right-col">
-                <div class="right-title">Inspirasi Digital</div>
-                <div class="benefit-list">
-                    <div class="benefit-item">Ide segar setiap minggu yang membangkitkan kreativitas</div>
-                    <div class="benefit-item">Perspektif baru dari para pemikir digital</div>
-                    <div class="benefit-item">Wawasan praktis untuk mewujudkan inovasi</div>
-                </div>
-            </div>
+            <!-- KOLOM KANAN: Kosong, menjaga proporsi layout -->
+            <div class="right-col"></div>
         </div>
     </div>
 </div>

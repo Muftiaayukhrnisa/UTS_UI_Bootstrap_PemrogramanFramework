@@ -199,7 +199,7 @@
             &copy; 2026 MutiBlog. Built with 
             <a href="#" class="text-decoration-none">Laravel</a> 
             <span class="mx-1">•</span> 
-            <span style="color: #d4a0a8;">Rosegold Elegance</span>
+            <span style="color: #d4a0a8;"></span>
         </small>
     </div>
 </footer>
