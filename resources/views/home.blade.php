@@ -14,23 +14,20 @@
         overflow: hidden;
     }
 
-    /* Gambar menyatu dengan background - posisi absolut di kanan, dengan mask gradasi */
     .hero-bg-image {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         width: 55%;
-        background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1170&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
-        /* Mask gradasi dari kiri (transparan) ke kanan (solid) sehingga gambar menyatu dengan background */
         -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 25%, #000 100%);
         mask-image: linear-gradient(to right, transparent 0%, #000 25%, #000 100%);
         z-index: 1;
     }
 
-    /* Efek ornamen latar (tetap di belakang) */
     .hero-dark-rose::before {
         content: "";
         position: absolute;
@@ -71,7 +68,6 @@
         align-items: stretch;
     }
 
-    /* KOLOM KIRI: Teks tanpa bingkai kotak (tanpa background, blur, border, shadow) */
     .left-col {
         flex: 1;
         min-width: 280px;
@@ -79,11 +75,9 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* Tidak ada background, backdrop-filter, border, atau box-shadow */
         z-index: 2;
     }
 
-    /* KOLOM KANAN: Kosong, hanya sebagai penyeimbang layout */
     .right-col {
         flex: 1;
         min-width: 280px;
@@ -91,18 +85,30 @@
         z-index: 2;
     }
 
-    /* Gaya teks kiri (elegan, kontras dengan background gelap) */
+    /* Gaya untuk greeting (sapaan) */
+    .greeting-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #e0a0b0, #d4a0a8);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1.5rem;
+        line-height: 1.3;
+    }
+
     .badge-rose-dark {
         display: inline-block;
-        background: transparent; /* hilangkan background */
-        padding: 0.4rem 0; /* hilangkan padding horizontal agar tidak seperti kotak */
+        background: transparent;
+        padding: 0.4rem 0;
         border: none;
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
         font-size: 0.7rem;
         letter-spacing: 1.5px;
         color: #d4a0a8;
-        margin-bottom: 1.8rem;
+        margin-bottom: 1rem;
         width: fit-content;
     }
 
@@ -171,8 +177,10 @@
         transform: translateX(5px);
     }
 
-    /* Responsif */
     @media (max-width: 768px) {
+        .greeting-text {
+            font-size: 1.8rem;
+        }
         .hero-bg-image {
             width: 100%;
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
@@ -197,31 +205,28 @@
 </style>
 
 <div class="hero-dark-rose">
-    <!-- Gambar menyatu dengan background via mask gradasi -->
     <div class="hero-bg-image"></div>
-
     <div class="container-2col">
         <div class="two-col-layout">
-            <!-- KOLOM KIRI: Teks tanpa bingkai kotak (background/border sudah dihapus) -->
             <div class="left-col">
+                <!-- Hanya tulisan Selamat Datang di MutiBlog, Irfan Ardiansyah (sesuai data user login) -->
+                <div class="greeting-text">
+                    Selamat Datang di MutiBlog, {{ Auth::user()->name }}
+                </div>
+
                 <div class="badge-rose-dark">RUANG IDE DIGITAL</div>
-                <h1 class="title-dark-rose">
-                    Selamat Datang di MutiBlog
-                </h1>
                 <div class="divider-dark"></div>
                 <p class="desc-dark-rose">
                     Kumpulan artikel yang penuh dengan ide-ide segar dan inspirasi digital untuk mengembangkan potensi kreatifmu.<br>
                     Temukan wawasan baru, cerita inovatif, dan pemikiran visioner dari para kreator.
                 </p>
-                <a href="/articles" class="btn-rose-dark">
+                <a href="{{ route('articles.index') }}" class="btn-rose-dark">
                     Jelajahi Artikel
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
             </div>
-
-            <!-- KOLOM KANAN: Kosong, menjaga proporsi layout -->
             <div class="right-col"></div>
         </div>
     </div>
