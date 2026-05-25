@@ -175,33 +175,33 @@
 
 <div class="detail-wrapper">
     <div class="detail-container">
-        <!-- Header dengan badge (tanpa tombol kembali) -->
-        <div class="detail-header">
-            <div class="badge-detail">
+        <!-- Header dengan badge -->
+        <div class="detail-header" data-aos="fade-down" data-aos-duration="600">
+            <div class="badge-detail" data-aos="zoom-in" data-aos-delay="100">
                 DETAIL ARTIKEL
             </div>
         </div>
 
         <!-- Kartu Artikel -->
-        <div class="article-card">
+        <div class="article-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
             @if($artikel->gambar_url)
-                <img src="{{ $artikel->gambar_url }}" class="article-img" alt="{{ $artikel->judul }}">
+                <img src="{{ $artikel->gambar_url }}" class="article-img" alt="{{ $artikel->judul }}" data-aos="zoom-in" data-aos-delay="200">
             @endif
 
             <div class="p-4 p-md-5">
-                <h1 class="article-title">{{ $artikel->judul }}</h1>
+                <h1 class="article-title" data-aos="fade-right" data-aos-delay="250">{{ $artikel->judul }}</h1>
 
-                <div class="meta-info">
+                <div class="meta-info" data-aos="fade-up" data-aos-delay="300">
                     <span class="meta-item">Kategori : {{ $artikel->kategori }}</span>
                     <span class="meta-item">{{ number_format($artikel->views) }} x dilihat</span>
                     <span class="meta-item">{{ $artikel->created_at->format('d M Y') }}</span>
                 </div>
 
-                <div class="article-content">
+                <div class="article-content" data-aos="fade-up" data-aos-delay="400">
                     {!! nl2br(e($artikel->isi)) !!}
                 </div>
 
-                <div class="article-footer">
+                <div class="article-footer" data-aos="fade-up" data-aos-delay="500">
                     <div class="footer-divider"></div>
                     <div class="footer-quote">
                         Terima kasih telah membaca artikel ini

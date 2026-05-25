@@ -114,7 +114,7 @@
         box-shadow: 0 4px 10px rgba(192, 110, 123, 0.3);
         width: fit-content;
         cursor: pointer;
-        margin-top: auto; /* dorong ke bawah */
+        margin-top: auto;
     }
 
     .btn-read-more:hover {
@@ -189,13 +189,13 @@
 </style>
 
 <div class="kategori-page">
-    <div class="kategori-header">
+    <div class="kategori-header" data-aos="fade-right" data-aos-duration="600">
         <h1>Kategori: {{ ucfirst($kategori) }}</h1>
     </div>
 
     <div class="article-grid">
-        @forelse ($artikels as $artikel)
-        <div class="article-card">
+        @forelse ($artikels as $index => $artikel)
+        <div class="article-card" data-aos="fade-up" data-aos-delay="{{ $index * 80 }}" data-aos-duration="600">
             @if($artikel->gambar)
                 <img src="{{ asset('storage/' . $artikel->gambar) }}" class="article-img" alt="{{ $artikel->judul }}">
             @else
@@ -213,7 +213,7 @@
             </div>
         </div>
         @empty
-        <div class="empty-state">
+        <div class="empty-state" data-aos="fade-up" data-aos-delay="100">
             <p>📭 Belum ada artikel dalam kategori <strong>{{ ucfirst($kategori) }}</strong>.</p>
             <p style="font-size: 0.85rem;">Silakan kunjungi kategori lain atau kembali nanti.</p>
         </div>
@@ -221,7 +221,7 @@
     </div>
 
     @if(method_exists($artikels, 'links') && $artikels->hasPages())
-    <div class="pagination-luxury">
+    <div class="pagination-luxury" data-aos="fade-up" data-aos-delay="200">
         {{ $artikels->appends(request()->query())->links('pagination::bootstrap-5') }}
     </div>
     @endif

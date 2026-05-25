@@ -47,7 +47,6 @@
         text-align: center;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
-    /* Overlay gelap untuk membuat teks lebih terbaca */
     .kategori-card::before {
         content: "";
         position: absolute;
@@ -81,7 +80,6 @@
     .kategori-card:hover a {
         transform: scale(1.05);
     }
-    /* Gaya spesifik untuk masing-masing kategori */
     .kategori-card.pendidikan {
         background-image: url('https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?w=600&auto=format');
     }
@@ -104,19 +102,21 @@
         }
     }
 </style>
+
 <div class="kategori-page">
-    <div class="kategori-header">
+    <div class="kategori-header" data-aos="fade-up" data-aos-duration="800">
         <h1>Pilih Kategori Artikel</h1>
         <p>Telusuri artikel menarik berdasarkan minat Anda</p>
     </div>
+
     <div class="kategori-grid">
-        <div class="kategori-card pendidikan">
+        <div class="kategori-card pendidikan" data-aos="flip-left" data-aos-delay="100" data-aos-duration="600">
             <a href="{{ route('artikel.kategori', 'Pendidikan') }}">Pendidikan</a>
         </div>
-        <div class="kategori-card kesehatan">
+        <div class="kategori-card kesehatan" data-aos="flip-left" data-aos-delay="200" data-aos-duration="600">
             <a href="{{ route('artikel.kategori', 'Kesehatan') }}">Kesehatan</a>
         </div>
-        <div class="kategori-card digital">
+        <div class="kategori-card digital" data-aos="flip-left" data-aos-delay="300" data-aos-duration="600">
             <a href="{{ route('artikel.kategori', 'Dunia Digital') }}">Dunia Digital</a>
         </div>
     </div>

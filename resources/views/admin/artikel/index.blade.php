@@ -138,7 +138,7 @@
         text-transform: uppercase;
         text-align: center;
         vertical-align: middle;
-        border-right: 1px solid #4a627a; /* garis pemisah header gelap */
+        border-right: 1px solid #4a627a;
     }
     .table-custom thead th:last-child {
         border-right: none;
@@ -151,7 +151,7 @@
         text-align: center;
         color: #212529;
         font-size: 0.9rem;
-        border-right: 1px solid #a0a0a0; /* garis pemisah body warna gelap (abu-abu gelap) */
+        border-right: 1px solid #a0a0a0;
     }
     .table-custom tbody td:last-child {
         border-right: none;
@@ -168,7 +168,7 @@
 
     .table-custom tbody tr {
         background: #ffffff;
-        border-bottom: 1px solid #d0d0d0; /* garis pemisah baris gelap */
+        border-bottom: 1px solid #d0d0d0;
     }
 
     .table-custom tbody tr:hover {
@@ -286,16 +286,21 @@
 
 <div class="dashboard-wrapper">
     <div class="dashboard-container">
-        <div class="dashboard-header">
+        <!-- Header dengan AOS fade-down -->
+        <div class="dashboard-header" data-aos="fade-down" data-aos-duration="800">
             <h2>Dashboard Artikel</h2>
-            <a href="{{ route('admin.artikel.create') }}" class="btn-create">+ Tambah Artikel</a>
+            <a href="{{ route('admin.artikel.create') }}" class="btn-create" data-aos="zoom-in" data-aos-delay="100">+ Tambah Artikel</a>
         </div>
 
+        <!-- Alert sukses dengan AOS -->
         @if(session('success'))
-        <div class="alert-custom">{{ session('success') }}</div>
+        <div class="alert-custom" data-aos="fade-up" data-aos-duration="600">
+            {{ session('success') }}
+        </div>
         @endif
 
-        <div class="dashboard-card">
+        <!-- Kartu tabel dengan AOS fade-up -->
+        <div class="dashboard-card" data-aos="fade-up" data-aos-delay="200">
             <div class="table-responsive">
                 <table class="table table-custom">
                     <thead>
@@ -308,11 +313,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($artikels as $item)
-                        <tr>
-                            <td>{{ $item->judul }}</td>
+                        @forelse ($artikels as $index => $item)
+                        <!-- Setiap baris tabel muncul dengan fade-up dan delay bertahap -->
+                        <tr data-aos="fade-up" data-aos-delay="{{ 300 + $index * 50 }}">
+                            <td class="fw-semibold">{{ $item->judul }}</td>
                             <td>{{ $item->kategori ?? 'Tidak ada kategori' }}</td>
-                            <td><span class="badge-status {{ $item->status == 'publish' ? 'publish' : '' }}">{{ $item->status == 'publish' ? 'Publish' : 'Draft' }}</span></td>
+                            <td>
+                                <span class="badge-status {{ $item->status == 'publish' ? 'publish' : '' }}">
+                                    {{ $item->status == 'publish' ? 'Publish' : 'Draft' }}
+                                </span>
+                            </td>
                             <td>{{ number_format($item->views) }}</td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
@@ -326,7 +336,7 @@
                             </td>
                         </tr>
                         @empty
-                        <tr>
+                        <tr data-aos="fade-up">
                             <td colspan="5" class="empty-state">
                                 <span style="font-size: 2rem; opacity: 0.5;">📭</span>
                                 <p>Belum ada artikel. Yuk buat artikel pertama!</p>
@@ -339,8 +349,9 @@
             </div>
         </div>
 
+        <!-- Pagination dengan AOS fade-up -->
         @if(method_exists($artikels, 'links') && $artikels->hasPages())
-        <div class="pagination-luxury">
+        <div class="pagination-luxury" data-aos="fade-up" data-aos-delay="400">
             {{ $artikels->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
         @endif

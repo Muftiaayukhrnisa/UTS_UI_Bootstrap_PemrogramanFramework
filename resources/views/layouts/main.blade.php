@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
+    <!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
     <title>MutiBlog</title>
@@ -279,5 +281,15 @@
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,      // durasi animasi (ms)
+        once: true,        // animasi hanya sekali saat scroll
+        offset: 100,       // jarak dari viewport sebelum animasi mulai
+        easing: 'ease-in-out'
+    });
+</script>
 </body>
 </html>

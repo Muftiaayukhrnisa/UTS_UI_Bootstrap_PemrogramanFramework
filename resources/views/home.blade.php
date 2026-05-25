@@ -206,27 +206,34 @@
 </style>
 
 <div class="hero-dark-rose">
-    <div class="hero-bg-image"></div>
+    <!-- Background image dengan animasi fade-left -->
+    <div class="hero-bg-image" data-aos="fade-left" data-aos-duration="1000"></div>
     <div class="container-2col">
         <div class="two-col-layout">
             <div class="left-col">
-                <div class="greeting-text">
+                <!-- Teks sapaan dengan fade-up dan delay -->
+                <div class="greeting-text" data-aos="fade-up" data-aos-delay="100">
                     Selamat Datang di MutiBlog, {{ Auth::user()->name }}
                 </div>
-                <div class="badge-rose-dark">RUANG IDE DIGITAL</div>
-                <div class="divider-dark"></div>
-                <p class="desc-dark-rose">
+                <!-- Badge dengan fade-up delay -->
+                <div class="badge-rose-dark" data-aos="fade-up" data-aos-delay="200">RUANG IDE DIGITAL</div>
+                <!-- Divider dengan fade-up delay -->
+                <div class="divider-dark" data-aos="fade-up" data-aos-delay="300"></div>
+                <!-- Deskripsi dengan fade-up delay -->
+                <p class="desc-dark-rose" data-aos="fade-up" data-aos-delay="400">
                     Kumpulan artikel yang penuh dengan ide-ide segar dan inspirasi digital untuk mengembangkan potensi kreatifmu.<br>
                     Temukan wawasan baru, cerita inovatif, dan pemikiran visioner dari para kreator.
                 </p>
-                <a href="{{ route('artikel.kategori_list') }}" class="btn-rose-dark">
+                <!-- Tombol dengan zoom-in delay -->
+                <a href="{{ route('artikel.kategori_list') }}" class="btn-rose-dark" data-aos="zoom-in" data-aos-delay="500">
                     Jelajahi Artikel
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
             </div>
-            <div class="right-col"></div>
+            <!-- Kolom kanan dengan fade-right -->
+            <div class="right-col" data-aos="fade-right" data-aos-delay="200"></div>
         </div>
     </div>
 </div>
