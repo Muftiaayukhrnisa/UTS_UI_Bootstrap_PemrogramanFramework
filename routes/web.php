@@ -1,13 +1,10 @@
 <?php
-Route::get('/ping', function () {
-    return 'pong';
-});
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController; // Tambahkan ini
+use App\Http\Controllers\PostController;
 
 // ==================== HALAMAN UTAMA ====================
 Route::get('/', function () {
@@ -19,6 +16,14 @@ Route::get('/', function () {
 
 // ==================== BLOG PUBLIK ====================
 Route::get('/articles', [ArtikelController::class, 'index'])->name('articles.index');
+
+// Halaman daftar kategori (pilihan kategori) - diletakkan sebelum {kategori}
+Route::get('/kategori', [ArtikelController::class, 'kategoriList'])->name('artikel.kategori_list');
+
+// Route untuk menampilkan artikel berdasarkan kategori (diletakkan sebelum {slug})
+Route::get('/kategori/{kategori}', [ArtikelController::class, 'byKategori'])->name('artikel.kategori');
+
+// Route detail artikel (slug)
 Route::get('/articles/{slug}', [ArtikelController::class, 'show'])->name('articles.show');
 
 // ==================== ADMIN (dilindungi auth) ====================

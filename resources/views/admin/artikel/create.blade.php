@@ -227,7 +227,12 @@
 
                 <div class="mb-4">
                     <label class="form-label">Kategori</label>
-                    <input type="text" name="kategori" value="{{ old('kategori') }}" class="form-control" required>
+                    <select name="kategori" class="form-select" required>
+                        <option value="" disabled {{ old('kategori') ? '' : 'selected' }}>-- Pilih Kategori --</option>
+                        <option value="Pendidikan" {{ old('kategori') == 'Pendidikan' ? 'selected' : '' }}>📚 Pendidikan</option>
+                        <option value="Kesehatan" {{ old('kategori') == 'Kesehatan' ? 'selected' : '' }}>🏥 Kesehatan</option>
+                        <option value="Dunia Digital" {{ old('kategori') == 'Dunia Digital' ? 'selected' : '' }}>💻 Dunia Digital</option>
+                    </select>
                     @error('kategori') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 

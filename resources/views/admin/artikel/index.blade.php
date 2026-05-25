@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-    /* Gaya gelap elegan - Rosegold & Abu-abu (konsisten dengan halaman lain) */
+    /* Gaya gelap elegan untuk background luar */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
     .dashboard-wrapper {
@@ -13,28 +13,28 @@
         overflow: hidden;
     }
 
-    .dashboard-wrapper::before {
+    .dashboard-wrapper::before,
+    .dashboard-wrapper::after {
         content: "";
         position: absolute;
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .dashboard-wrapper::before {
         top: -100px;
         right: -100px;
         width: 350px;
         height: 350px;
         background: radial-gradient(circle, rgba(192, 110, 123, 0.12), transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
     }
 
     .dashboard-wrapper::after {
-        content: "";
-        position: absolute;
         bottom: -80px;
         left: -80px;
         width: 400px;
         height: 400px;
         background: radial-gradient(circle, rgba(128, 128, 128, 0.08), transparent 70%);
-        border-radius: 50%;
-        z-index: 0;
     }
 
     .dashboard-container {
@@ -96,7 +96,6 @@
         color: #0a0a14;
     }
 
-    /* Alert custom */
     .alert-custom {
         background: rgba(30, 30, 50, 0.7);
         backdrop-filter: blur(8px);
@@ -109,108 +108,123 @@
         font-weight: 500;
     }
 
-    /* Kartu tabel */
+    /* Kartu tabel - background putih */
     .dashboard-card {
-        background: rgba(20, 20, 35, 0.5);
-        backdrop-filter: blur(12px);
+        background: #ffffff;
         border-radius: 1.8rem;
-        border: 1px solid rgba(212, 160, 168, 0.25);
+        border: 1px solid #e0e0e0;
         overflow: hidden;
-        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
     }
 
-    .dashboard-card:hover {
-        border-color: rgba(212, 160, 168, 0.5);
-        box-shadow: 0 20px 35px -12px rgba(192, 110, 123, 0.2);
-    }
-
-    /* Tabel */
+    /* Tabel dengan garis pembatas antar kolom */
     .table-custom {
         margin: 0;
         font-family: 'Poppins', sans-serif;
+        background: white;
+        width: 100%;
+        border-collapse: collapse;
     }
 
+    /* Header tabel */
     .table-custom thead th {
-        background: linear-gradient(105deg, #1a1a2e, #0f0f1a);
-        color: #d4a0a8;
-        font-weight: 600;
-        border-bottom: 1px solid rgba(212, 160, 168, 0.3);
+        background: #2c3e50;
+        color: #ffffff;
+        font-weight: 700;
+        border-bottom: 2px solid #1a252f;
         padding: 1rem;
         font-size: 0.85rem;
         letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-align: center;
+        vertical-align: middle;
+        border-right: 1px solid #4a627a; /* garis pemisah header gelap */
+    }
+    .table-custom thead th:last-child {
+        border-right: none;
+    }
+
+    /* Body tabel */
+    .table-custom tbody td {
+        padding: 1rem;
+        vertical-align: middle;
+        text-align: center;
+        color: #212529;
+        font-size: 0.9rem;
+        border-right: 1px solid #a0a0a0; /* garis pemisah body warna gelap (abu-abu gelap) */
+    }
+    .table-custom tbody td:last-child {
+        border-right: none;
+    }
+
+    /* Kolom pertama (Judul) rata kiri */
+    .table-custom tbody td:first-child {
+        text-align: left;
+        font-weight: 600;
+    }
+    .table-custom thead th:first-child {
+        text-align: left;
     }
 
     .table-custom tbody tr {
-        transition: background 0.2s;
-        border-bottom: 1px solid rgba(212, 160, 168, 0.1);
+        background: #ffffff;
+        border-bottom: 1px solid #d0d0d0; /* garis pemisah baris gelap */
     }
 
     .table-custom tbody tr:hover {
-        background: rgba(212, 160, 168, 0.05);
-    }
-
-    .table-custom td {
-        padding: 1rem;
-        vertical-align: middle;
-        color: #c0c0d0;
-        font-size: 0.9rem;
+        background: #f8f9fa;
     }
 
     /* Badge status */
     .badge-status {
-        background: rgba(212, 160, 168, 0.15);
-        color: #d4a0a8;
+        background: #e9ecef;
+        color: #2c3e50;
         padding: 0.3rem 0.9rem;
         border-radius: 40px;
         font-weight: 600;
         font-size: 0.7rem;
         display: inline-block;
+        text-align: center;
     }
-
     .badge-status.publish {
-        background: linear-gradient(105deg, #b76e79, #d4a0a8);
+        background: #d4a0a8;
         color: #12121c;
     }
 
     /* Tombol aksi */
-    .btn-edit {
-        background: rgba(30, 30, 50, 0.8);
-        border: 1px solid rgba(212, 160, 168, 0.4);
-        padding: 0.35rem 1rem;
-        border-radius: 40px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: #d4a0a8;
-        transition: 0.2s;
-        text-decoration: none;
+    .btn-edit, .btn-delete {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.3rem;
-    }
-
-    .btn-edit:hover {
-        background: rgba(212, 160, 168, 0.2);
-        border-color: #d4a0a8;
-        color: #e0b0b8;
-        transform: translateY(-2px);
-    }
-
-    .btn-delete {
-        background: rgba(30, 30, 50, 0.8);
-        border: 1px solid rgba(220, 53, 69, 0.4);
         padding: 0.35rem 1rem;
         border-radius: 40px;
         font-size: 0.75rem;
         font-weight: 500;
-        color: #e08b8b;
+        text-decoration: none;
         transition: 0.2s;
         cursor: pointer;
     }
-
+    .btn-edit {
+        background: #e9ecef;
+        border: 1px solid #ced4da;
+        color: #495057;
+    }
+    .btn-edit:hover {
+        background: #d4a0a8;
+        border-color: #d4a0a8;
+        color: white;
+        transform: translateY(-2px);
+    }
+    .btn-delete {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+    }
     .btn-delete:hover {
-        background: rgba(220, 53, 69, 0.15);
-        border-color: #e08b8b;
-        color: #f0a0a0;
+        background: #e08b8b;
+        border-color: #dc3545;
+        color: white;
         transform: translateY(-2px);
     }
 
@@ -220,14 +234,12 @@
         justify-content: center;
         margin-top: 2rem;
     }
-
     .pagination-luxury .pagination {
         gap: 0.3rem;
     }
-
     .pagination-luxury .page-link {
-        background: rgba(30, 30, 50, 0.7);
-        border: 1px solid rgba(212, 160, 168, 0.3);
+        background: white;
+        border: 1px solid #dee2e6;
         border-radius: 40px !important;
         padding: 0.5rem 1rem;
         color: #d4a0a8;
@@ -235,29 +247,23 @@
         font-weight: 500;
         transition: all 0.2s;
     }
-
     .pagination-luxury .page-link:hover {
-        background: linear-gradient(105deg, #b76e79, #d4a0a8);
-        border-color: transparent;
-        color: #12121c;
-        transform: translateY(-2px);
+        background: #d4a0a8;
+        border-color: #d4a0a8;
+        color: white;
     }
-
     .pagination-luxury .active .page-link {
-        background: linear-gradient(105deg, #b76e79, #d4a0a8);
-        border-color: transparent;
-        color: #12121c;
-        box-shadow: 0 4px 10px rgba(192, 110, 123, 0.3);
+        background: #b76e79;
+        border-color: #b76e79;
+        color: white;
     }
 
-    /* Empty state */
     .empty-state {
         text-align: center;
         padding: 2rem;
     }
-
     .empty-state p {
-        color: #b0b0c0;
+        color: #6c757d;
         margin-top: 0.5rem;
     }
 
@@ -266,37 +272,29 @@
             flex-direction: column;
             text-align: center;
         }
-        .table-custom thead th {
+        .table-custom thead th,
+        .table-custom tbody td {
+            padding: 0.6rem;
             font-size: 0.7rem;
-        }
-        .table-custom td {
-            font-size: 0.8rem;
         }
         .btn-edit, .btn-delete {
-            padding: 0.3rem 0.7rem;
-            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.65rem;
         }
     }
 </style>
 
 <div class="dashboard-wrapper">
     <div class="dashboard-container">
-        <!-- Header -->
         <div class="dashboard-header">
             <h2>Dashboard Artikel</h2>
-            <a href="{{ route('admin.artikel.create') }}" class="btn-create">
-                + Tambah Artikel
-            </a>
+            <a href="{{ route('admin.artikel.create') }}" class="btn-create">+ Tambah Artikel</a>
         </div>
 
-        <!-- Alert sukses -->
         @if(session('success'))
-        <div class="alert-custom">
-            {{ session('success') }}
-        </div>
+        <div class="alert-custom">{{ session('success') }}</div>
         @endif
 
-        <!-- Tabel artikel -->
         <div class="dashboard-card">
             <div class="table-responsive">
                 <table class="table table-custom">
@@ -312,25 +310,17 @@
                     <tbody>
                         @forelse ($artikels as $item)
                         <tr>
-                            <td class="fw-semibold">{{ $item->judul }}</td>
-                            <td>{{ $item->kategori }}</td>
-                            <td>
-                                <span class="badge-status {{ $item->status == 'publish' ? 'publish' : '' }}">
-                                    {{ $item->status == 'publish' ? 'Publish' : 'Draft' }}
-                                </span>
-                            </td>
+                            <td>{{ $item->judul }}</td>
+                            <td>{{ $item->kategori ?? 'Tidak ada kategori' }}</td>
+                            <td><span class="badge-status {{ $item->status == 'publish' ? 'publish' : '' }}">{{ $item->status == 'publish' ? 'Publish' : 'Draft' }}</span></td>
                             <td>{{ number_format($item->views) }}</td>
                             <td>
-                                <div class="d-flex gap-2">
-                                    <a href="{{ route('admin.artikel.edit', $item->id) }}" class="btn-edit">
-                                        Edit
-                                    </a>
-                                    <form action="{{ route('admin.artikel.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus artikel \"{{ $item->judul }}\"?')">
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <a href="{{ route('admin.artikel.edit', $item->id) }}" class="btn-edit">Edit</a>
+                                    <form action="{{ route('admin.artikel.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus artikel \"{{ $item->judul }}\"?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-delete">
-                                            Hapus
-                                        </button>
+                                        <button type="submit" class="btn-delete">Hapus</button>
                                     </form>
                                 </div>
                             </td>
@@ -349,10 +339,9 @@
             </div>
         </div>
 
-        <!-- Pagination -->
         @if(method_exists($artikels, 'links') && $artikels->hasPages())
         <div class="pagination-luxury">
-            {{ $artikels->links('pagination::bootstrap-5') }}
+            {{ $artikels->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
         @endif
     </div>

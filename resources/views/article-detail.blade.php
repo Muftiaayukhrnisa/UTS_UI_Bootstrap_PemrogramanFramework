@@ -43,42 +43,17 @@
         z-index: 2;
     }
 
-    /* Header dengan tombol back */
+    /* Header dengan badge saja (tanpa tombol kembali) */
     .detail-header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
         margin-bottom: 2rem;
         background: rgba(20, 20, 35, 0.4);
         backdrop-filter: blur(8px);
         border-radius: 1.5rem;
         padding: 0.8rem 1.5rem;
         border: 1px solid rgba(212, 160, 168, 0.2);
-    }
-
-    .btn-back {
-        background: rgba(30, 30, 50, 0.7);
-        border: 1px solid rgba(212, 160, 168, 0.4);
-        padding: 0.5rem 1.2rem;
-        border-radius: 40px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 500;
-        font-size: 0.85rem;
-        color: #d4a0a8;
-        transition: 0.2s;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .btn-back:hover {
-        background: rgba(212, 160, 168, 0.15);
-        border-color: #d4a0a8;
-        color: #e0b0b8;
-        transform: translateX(-3px);
     }
 
     .badge-detail {
@@ -193,19 +168,15 @@
             font-size: 0.9rem;
         }
         .detail-header {
-            flex-direction: column;
-            text-align: center;
+            justify-content: center;
         }
     }
 </style>
 
 <div class="detail-wrapper">
     <div class="detail-container">
-        <!-- Header -->
+        <!-- Header dengan badge (tanpa tombol kembali) -->
         <div class="detail-header">
-            <a href="/articles" class="btn-back">
-                Kembali ke Artikel
-            </a>
             <div class="badge-detail">
                 DETAIL ARTIKEL
             </div>

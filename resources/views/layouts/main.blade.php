@@ -26,33 +26,44 @@
             flex-direction: column;
         }
 
-        /* Navbar gelap mewah dengan efek glass - nuansa rosegold */
+        /* Navbar lebih rapi dan elegan */
         .navbar-luxury {
-            background: rgba(15, 15, 26, 0.85);
+            background: rgba(15, 15, 26, 0.9);
             backdrop-filter: blur(16px);
-            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.4);
             border-bottom: 1px solid rgba(212, 160, 168, 0.3);
-            padding: 0.8rem 0;
+            padding: 0.6rem 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
             font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             font-weight: 700;
             background: linear-gradient(135deg, #e0a0b0, #d4a0a8, #b0b0c0);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             letter-spacing: -0.5px;
+            transition: opacity 0.2s;
+        }
+        .navbar-brand:hover {
+            opacity: 0.85;
+        }
+
+        .navbar-nav {
+            gap: 0.3rem;
         }
 
         .navbar-nav .nav-link {
             font-weight: 500;
-            color: #c0c0d0;
-            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            color: #e0e0e8;
+            transition: all 0.25s ease;
             padding: 0.5rem 1rem;
             border-radius: 40px;
-            margin: 0 0.1rem;
+            margin: 0;
+            position: relative;
         }
 
         .navbar-nav .nav-link:hover {
@@ -67,22 +78,28 @@
             box-shadow: 0 4px 12px rgba(192, 110, 123, 0.3);
         }
 
-        /* Dropdown menu untuk user */
+        /* Dropdown menu lebih rapi */
         .dropdown-menu {
             background: rgba(20, 20, 35, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(212, 160, 168, 0.3);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
         }
         .dropdown-menu .dropdown-item {
             color: #e8e8f0;
             font-weight: 500;
-            transition: 0.2s;
+            padding: 0.5rem 1.2rem;
+            transition: all 0.2s;
+            border-radius: 12px;
+            margin: 0 0.3rem;
         }
         .dropdown-menu .dropdown-item:hover {
             background: rgba(212, 160, 168, 0.2);
             color: #d4a0a8;
+            transform: translateX(4px);
         }
         .btn-logout-dropdown {
             background: none;
@@ -92,21 +109,25 @@
             cursor: pointer;
         }
 
-        /* Toggler button untuk mobile (warna rosegold) */
+        /* Toggler button */
         .navbar-toggler {
-            border-color: rgba(212, 160, 168, 0.5);
+            border-color: rgba(212, 160, 168, 0.6);
+            padding: 0.4rem 0.6rem;
+            transition: all 0.2s;
+        }
+        .navbar-toggler:hover {
+            background: rgba(212, 160, 168, 0.1);
         }
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4a0a8' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
-        /* Main content */
         main {
             flex: 1;
             padding: 2rem 0;
         }
 
-        /* Footer gelap elegan */
+        /* Footer */
         .footer-luxury {
             background: linear-gradient(95deg, #0a0a14 0%, #12121e 100%);
             color: #8a8aaa;
@@ -114,25 +135,21 @@
             padding: 2rem 0;
             margin-top: auto;
         }
-
         .footer-luxury small {
             font-weight: 300;
             letter-spacing: 0.3px;
             font-family: 'Inter', sans-serif;
         }
-
         .footer-luxury a {
             color: #d4a0a8;
             text-decoration: none;
             transition: 0.2s;
         }
-
         .footer-luxury a:hover {
             color: #e0b0b8;
             text-decoration: underline;
         }
 
-        /* Custom scrollbar dengan rosegold */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -145,7 +162,6 @@
             border-radius: 10px;
         }
 
-        /* Card style umum */
         .card-modern {
             background: rgba(20, 20, 35, 0.6);
             backdrop-filter: blur(8px);
@@ -161,7 +177,6 @@
             background: rgba(20, 20, 35, 0.8);
         }
 
-        /* Tombol umum */
         .btn-rosegold {
             background: linear-gradient(105deg, #b76e79, #d4a0a8, #8c8cac);
             background-size: 150% auto;
@@ -182,10 +197,18 @@
 
         @media (max-width: 768px) {
             .navbar-brand {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             main {
                 padding: 1rem 0;
+            }
+            .navbar-nav {
+                gap: 0.2rem;
+                margin-top: 0.5rem;
+            }
+            .navbar-nav .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -203,7 +226,7 @@
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto gap-2 gap-lg-3 align-items-center">
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('articles.index') }}">Artikel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('artikel.kategori_list') }}">Artikel</a></li>
                     @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.artikel.index') }}">Admin</a></li>
                     @endauth
@@ -235,7 +258,7 @@
     </nav>
 </header>
 
-<!-- Spacer karena navbar fixed-top -->
+<!-- Spacer -->
 <div style="height: 80px;"></div>
 
 <main class="flex-grow-1">

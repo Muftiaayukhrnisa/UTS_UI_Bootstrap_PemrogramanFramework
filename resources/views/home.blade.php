@@ -72,6 +72,7 @@
         flex: 1;
         min-width: 280px;
         padding: 2rem 2.5rem;
+        padding-top: 4rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -85,7 +86,6 @@
         z-index: 2;
     }
 
-    /* Gaya untuk greeting (sapaan) */
     .greeting-text {
         font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
@@ -190,7 +190,8 @@
             flex-direction: column;
         }
         .left-col {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
+            padding-top: 3rem;
         }
         .right-col {
             display: none;
@@ -209,18 +210,16 @@
     <div class="container-2col">
         <div class="two-col-layout">
             <div class="left-col">
-                <!-- Hanya tulisan Selamat Datang di MutiBlog, Irfan Ardiansyah (sesuai data user login) -->
                 <div class="greeting-text">
                     Selamat Datang di MutiBlog, {{ Auth::user()->name }}
                 </div>
-
                 <div class="badge-rose-dark">RUANG IDE DIGITAL</div>
                 <div class="divider-dark"></div>
                 <p class="desc-dark-rose">
                     Kumpulan artikel yang penuh dengan ide-ide segar dan inspirasi digital untuk mengembangkan potensi kreatifmu.<br>
                     Temukan wawasan baru, cerita inovatif, dan pemikiran visioner dari para kreator.
                 </p>
-                <a href="{{ route('articles.index') }}" class="btn-rose-dark">
+                <a href="{{ route('artikel.kategori_list') }}" class="btn-rose-dark">
                     Jelajahi Artikel
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
