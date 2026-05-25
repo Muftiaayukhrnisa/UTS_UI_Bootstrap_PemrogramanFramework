@@ -1,9 +1,13 @@
 <?php
+Route::get('/ping', function () {
+    return 'pong';
+});
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController; // Tambahkan ini
 
 // ==================== HALAMAN UTAMA ====================
 Route::get('/', function () {
@@ -49,3 +53,6 @@ Route::get('/profil-penulis', function () {
     ];
     return view('profil_penulis', compact('author'));
 })->name('profil.penulis');
+
+// ==================== CRUD POSTS (RELASI KATEGORI) ====================
+Route::resource('posts', PostController::class);

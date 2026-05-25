@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+    /**
+     * Display a listing of the posts.
+     */
+    public function index()
+    {
+        $posts = Post::with('category')->get();
+        return view('posts.index_posts', compact('posts'));
+    }
+
+    /**
+     * Show the form for creating a new post.
+     */
+    public function create()
+    {
+        $categories = Category::all();
+        return view('posts.create_posts', compact('categories'));
+    }
+
+    /**
+     * Store a newly created post in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title'       => 'required|min:5',
+            'content'     => 'required|min:10',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        Post::create($request->all());
+
+        return redirect()->route('posts.index')
+                         ->with('success', 'Post created successfully.');
+    }
+
+    /**
+     * Display the specified post.
+     */
+    public function show(Post $post)
+    {
+        // Optional: jika ingin menampilkan detail post
+        return view('posts.show_posts', compact('post'));
+    }
+
+    /**
+     * Show the form for editing the specified post.
+     */
+    public function edit(Post $post)
+    {
+        $categories = Category::all();
+        return view('posts.edit_posts', compact('post', 'categories'));
+    }
+
+    /**
+     * Update the specified post in storage.
+     */
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'title'       => 'required|min:5',
+            'content'     => 'required|min:10',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        $post->update($request->all());
+
+        return redirect()->route('posts.index')
+                         ->with('success', 'Post updated successfully.');
+    }
+
+    /**
+     * Remove the specified post from storage.
+     */
+    public function destroy(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->route('posts.index')
+                         ->with('success', 'Post deleted successfully.');
+    }
+}
