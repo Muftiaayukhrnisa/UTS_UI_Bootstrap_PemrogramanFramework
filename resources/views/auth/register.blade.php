@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar | MutiBlog</title>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -146,12 +148,12 @@
     </style>
 </head>
 <body>
-    <div class="auth-card">
-        <h2 class="auth-title">Daftar Akun</h2>
-        <div class="auth-subtitle">Bergabunglah dengan MutiBlog</div>
+    <div class="auth-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+        <h2 class="auth-title" data-aos="zoom-in" data-aos-delay="150">Daftar Akun</h2>
+        <div class="auth-subtitle" data-aos="fade-right" data-aos-delay="200">Bergabunglah dengan MutiBlog</div>
 
         @if ($errors->any())
-            <div class="alert-danger">
+            <div class="alert-danger" data-aos="fade-up" data-aos-delay="250">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -160,7 +162,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" data-aos="fade-up" data-aos-delay="300">
             @csrf
             <div class="form-group">
                 <label class="form-label">Nama Lengkap</label>
@@ -178,12 +180,22 @@
                 <label class="form-label">Konfirmasi Password</label>
                 <input type="password" name="password_confirmation" class="form-control" required>
             </div>
-            <button type="submit" class="btn-auth">Daftar</button>
+            <button type="submit" class="btn-auth" data-aos="zoom-in" data-aos-delay="400">Daftar</button>
         </form>
 
-        <div class="auth-footer">
+        <div class="auth-footer" data-aos="fade-up" data-aos-delay="450">
             Sudah punya akun? <a href="{{ route('login') }}">Login disini</a>
         </div>
     </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+    </script>
 </body>
 </html>

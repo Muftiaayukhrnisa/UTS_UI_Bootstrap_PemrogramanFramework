@@ -207,30 +207,30 @@
 
 <div class="edit-wrapper">
     <div class="edit-container">
-        <div class="edit-header">
+        <div class="edit-header" data-aos="fade-up" data-aos-duration="800">
             <h1>Edit Artikel</h1>
             <p>Perbarui informasi artikel Anda dengan mudah</p>
             <div class="divider"></div>
         </div>
 
-        <div class="edit-card p-4 p-md-5">
+        <div class="edit-card p-4 p-md-5" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
             <form action="{{ route('admin.artikel.update', $artikel->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
                     <label class="form-label">Judul Artikel</label>
                     <input type="text" name="judul" value="{{ old('judul', $artikel->judul) }}" class="form-control" required>
                     @error('judul') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="250">
                     <label class="form-label">Isi Artikel</label>
                     <textarea name="isi" rows="8" class="form-control" required>{{ old('isi', $artikel->isi) }}</textarea>
                     @error('isi') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="300">
                     <label class="form-label">Kategori</label>
                     <select name="kategori" class="form-select" required>
                         <option value="" disabled {{ old('kategori', $artikel->kategori) ? '' : 'selected' }}>-- Pilih Kategori --</option>
@@ -241,7 +241,7 @@
                     @error('kategori') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="350">
                     <label class="form-label">Status</label>
                     <select name="status" class="form-select">
                         <option value="draft" {{ old('status', $artikel->status) == 'draft' ? 'selected' : '' }}>Draft</option>
@@ -249,10 +249,10 @@
                     </select>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="400">
                     <label class="form-label">Gambar Artikel (Opsional)</label>
                     @if($artikel->gambar)
-                        <div class="current-image">
+                        <div class="current-image" data-aos="zoom-in" data-aos-delay="450">
                             <img src="{{ asset('storage/' . $artikel->gambar) }}" alt="Gambar Lama" width="100" class="rounded">
                             <p>Gambar saat ini</p>
                         </div>
@@ -262,7 +262,7 @@
                     @error('gambar') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="action-buttons d-flex gap-3 justify-content-center mt-4">
+                <div class="action-buttons d-flex gap-3 justify-content-center mt-4" data-aos="fade-up" data-aos-delay="500">
                     <button type="submit" class="btn-update">Update Artikel</button>
                     <a href="{{ route('admin.artikel.index') }}" class="btn-secondary-custom">Kembali</a>
                 </div>

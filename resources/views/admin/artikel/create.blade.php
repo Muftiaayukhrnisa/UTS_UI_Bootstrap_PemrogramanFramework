@@ -203,29 +203,29 @@
 
 <div class="create-wrapper">
     <div class="create-container">
-        <div class="create-header">
+        <div class="create-header" data-aos="fade-up" data-aos-duration="800">
             <h1>Tambah Artikel</h1>
             <p>Tulis dan publikasikan artikel baru Anda</p>
             <div class="divider"></div>
         </div>
 
-        <div class="create-card p-4 p-md-5">
+        <div class="create-card p-4 p-md-5" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
             <form action="{{ route('admin.artikel.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
                     <label class="form-label">Judul Artikel</label>
                     <input type="text" name="judul" value="{{ old('judul') }}" class="form-control" required>
                     @error('judul') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="250">
                     <label class="form-label">Isi Artikel</label>
                     <textarea name="isi" rows="8" class="form-control" required>{{ old('isi') }}</textarea>
                     @error('isi') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="300">
                     <label class="form-label">Kategori</label>
                     <select name="kategori" class="form-select" required>
                         <option value="" disabled {{ old('kategori') ? '' : 'selected' }}>-- Pilih Kategori --</option>
@@ -236,7 +236,7 @@
                     @error('kategori') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="350">
                     <label class="form-label">Status</label>
                     <select name="status" class="form-select">
                         <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
@@ -244,7 +244,7 @@
                     </select>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" data-aos="fade-up" data-aos-delay="400">
                     <label class="form-label">Gambar Artikel (Opsional)</label>
                     <input type="file" name="gambar" class="form-control" id="gambarInput" accept="image/*">
                     <div class="image-preview" id="imagePreview">
@@ -254,7 +254,7 @@
                     @error('gambar') <small class="text-danger">{{ $message }}</small> @enderror
                 </div>
 
-                <div class="action-buttons d-flex gap-3 justify-content-center mt-4">
+                <div class="action-buttons d-flex gap-3 justify-content-center mt-4" data-aos="fade-up" data-aos-delay="450">
                     <button type="submit" class="btn-save">Simpan Artikel</button>
                     <a href="{{ route('admin.artikel.index') }}" class="btn-secondary-custom">Kembali</a>
                 </div>

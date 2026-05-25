@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MutiBlog</title>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -178,12 +180,12 @@
     </style>
 </head>
 <body>
-    <div class="auth-card">
-        <h2 class="auth-title">Login</h2>
-        <div class="auth-subtitle">Masuk ke akun MutiBlog anda</div>
+    <div class="auth-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+        <h2 class="auth-title" data-aos="zoom-in" data-aos-delay="150">Login</h2>
+        <div class="auth-subtitle" data-aos="fade-right" data-aos-delay="200">Masuk ke akun MutiBlog anda</div>
 
         @if ($errors->any())
-            <div class="alert-danger">
+            <div class="alert-danger" data-aos="fade-up" data-aos-delay="250">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -192,7 +194,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" data-aos="fade-up" data-aos-delay="300">
             @csrf
             <div class="form-group">
                 <label class="form-label">Email Address</label>
@@ -209,12 +211,22 @@
             <div class="forgot-link">
                 <a href="{{ route('password.request') }}">Lupa password?</a>
             </div>
-            <button type="submit" class="btn-auth">Login</button>
+            <button type="submit" class="btn-auth" data-aos="zoom-in" data-aos-delay="400">Login</button>
         </form>
 
-        <div class="auth-footer">
+        <div class="auth-footer" data-aos="fade-up" data-aos-delay="450">
             Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
         </div>
     </div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+    </script>
 </body>
 </html>
